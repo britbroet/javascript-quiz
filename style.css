@@ -31,3 +31,24 @@ h1 {
 #endQuiz {
 	display: none;
 }
+
+.progress{
+    background-color: yellow;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin: 8px;
+}
+
+.current {
+    background-color: yellow;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin: 8px;
+}
+
+
+.seen {
+	background-color: purple;
+}

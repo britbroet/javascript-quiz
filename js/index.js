@@ -14,6 +14,8 @@ var radio2 = $("#radio2").val();
 var radio3 = $("#radio3").val();
 var radio4 = $("#radio4").val();
 
+var progressBox;
+
 var allQuestions = [
 {
 	question: "Question 1", 
@@ -48,6 +50,19 @@ $("#answer2").append(allQuestions[0].choices[1]);
 $("#answer3").append(allQuestions[0].choices[2]);
 $("#answer4").append(allQuestions[0].choices[3]);
 
+
+
+
+$("#progressBar :nth-child(1)").addClass("seen");
+
+
+
+
+
+function newProgress(question) { 
+	$("#progressBar .current").next().addClass('seen').addClass('current');
+}
+
 function recordAnswer(question) {
 	if (userAnswer == allQuestions[question].correctAnswer) {
 		userCorrectAnswers.push(allQuestions[question].choices[userAnswer]);
@@ -69,6 +84,8 @@ function newQuestion() {
 			$("input").prop('checked', false);
 		});  
 
+		newProgress(currentQuestion);
+
 		$("#question").text(allQuestions[currentQuestion].question);
 		$("#answer1").text(allQuestions[currentQuestion].choices[0]);
 		$("#answer2").text(allQuestions[currentQuestion].choices[1]);
@@ -79,7 +96,7 @@ function newQuestion() {
 		// (was trying to dynamically generate the answer box ids here instead of having them all listed like above - not working yet though)
 
 		// for (i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
-		// 	var createId = "#answers" + (i + 1);
+		// 	var createId = "#answer" + (i + 1);
 		// 	console.log('created id:  ' + createId);
 		// 	$("createId").text(allQuestions[currentQuestion].choices[i]);
 		// 	console.log('new questions: ' + allQuestions[currentQuestion].choices[i]);
@@ -104,6 +121,7 @@ $("#submit").click(function() {
 
 		recordAnswer(currentQuestion);
 		currentQuestion++;
+		//$("#progressBar").text((currentQuestion + 1) + '/' + allQuestions.length);
 		newQuestion();
 		finishQuiz();
 })
@@ -113,7 +131,8 @@ function finishQuiz(end){
 		$("#answerForm").hide();
 		$("#submit").hide();
 		$("#question").hide();
-		$("#endQuiz").show().append("You got " + userCorrectAnswers.length + " out of " + allQuestions.length + "correct!")
+		$('#progressBar').hide();
+		$("#endQuiz").show().append("You got " + userCorrectAnswers.length + " out of " + allQuestions.length + " correct!")
 	}
 }
 //doc ready closing tag:
