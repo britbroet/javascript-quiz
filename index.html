@@ -3,6 +3,7 @@
 <head>
   <title>JavaScript Quiz</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
 </head>
 <body>
 
@@ -15,34 +16,61 @@
 		</div>
 
 		<form id="answerForm">
-			<div class="answers" id="answers">This is the answer container
-				<div id="answer1">
-				</div>
-				<input type="radio" id="radio1" name="answer" value="0">
+			<div class="answers" id="answers">
 				
-				<div id="answer2">
-				</div>
-				<input type="radio" id="radio2" name="answer" value="1">
-				
-				<div id="answer3">
-				</div>
-				<input type="radio" id="radio3" name="answer" value="2">
-				
-				<div id="answer4">
-				</div>
-				<input type="radio" id="radio4" name="answer" value="3">
+			<div class="optionContainer">
+					<input type="radio" id="radio1" name="answer" value="0" class="option">
+					<div id="answer1" class="optionText">
+					</div>
+			</div>	
+
+			<div class="optionContainer">
+					<input type="radio" id="radio2" name="answer" value="1" class="option">	
+					<div id="answer2" class="optionText">
+					</div>
+			</div>
+					
+			<div class="optionContainer">
+					<input type="radio" id="radio3" name="answer" value="2" class="option">
+
+					<div id="answer3" class="optionText">
+					</div>
+			</div>
+					
+			<div class="optionContainer">	
+					<input type="radio" id="radio4" name="answer" value="3" class="option">
+
+					<div id="answer4" class="optionText">
+					</div>
+			</div>
+
+
 
 			</div>
 		</form>
 
 		<input type="button" class="submitAnswer" id="submit" value="Submit">
 
-		<div>
-			<div id="endQuiz"></div>
+
+
+		<div id="progressBar">
+			<div id="progressQ1" class="current"></div>
+			<div id="progressQ2" class="progress"></div>
+			<div id="progressQ3" class="progress"></div>
+			<div id="progressQ4" class="progress"></div>
+			<div id="progressQ5" class="progress"></div>
+			<div id="progressQ6" class="progress"></div>
+			<div id="progressQ7" class="progress"></div>
+			<div id="progressQ8" class="progress"></div>
 		</div>
 
-		<div class="progressBar">
+
+
+		<div>
+			<div id="endQuiz"></div>
+			<input type="button" id="retakeButton" value="retakeButton">
 		</div>
+
 
 
 

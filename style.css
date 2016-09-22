@@ -1,19 +1,24 @@
+
+body {
+	font-family: 'Oswald', sans-serif;
+}
+
 h1 {
 	color: purple;
 }
 
 
 .page {
-	width: 400px;
+	width: 600px;
 	height: 400px;
-	background-color: grey;
 	text-align: center;
 	margin: 0 auto;
 }
 
 .question {
 	min-height: 100px;
-	background-color: blue;
+	font-size: 24px;
+	margin-bottom: 40px;
 }
 
 
@@ -25,9 +30,50 @@ h1 {
 
 .answers {
 	min-height: 100px;
-	background-color: red;
+	padding-left: 45px;
 }
 
 #endQuiz {
+	display: none;
+}
+
+.option {
+	float: left;
+	margin-right: 20px;
+}
+
+.optionText {
+	text-align: left;
+}
+
+.optionContainer {
+	width: 45%;
+    display: inline-block;
+}
+
+.progress{
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin: 8px;
+    border: 2px solid black;
+}
+
+.current {
+    background-color: gray;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin: 8px;
+    border: 2px solid black;
+}
+
+
+.seen {
+	background-color: purple;
+}
+
+#retakeButton {
 	display: none;
 }

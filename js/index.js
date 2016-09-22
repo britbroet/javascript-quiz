@@ -14,39 +14,61 @@ var radio2 = $("#radio2").val();
 var radio3 = $("#radio3").val();
 var radio4 = $("#radio4").val();
 
+var progressBox;
+
 var allQuestions = [
 {
-	question: "Question 1", 
-	choices: ["Q1 - wrong answer", "Q1 - wrong answer", "Q1 - wrong answer", "Q1 - CORRECT answer"], 
+	question: "Which candy bar was named after a horse?", 
+	choices: ["Reese's", "Zero", "Crunch", "Snickers"], 
 	correctAnswer:3
 },
 
 {
-	question: "Question 2", 
-	choices: ["Q2 - wrong answer", "Q2 - wrong answer", "Q2 - CORRECT answer", "Q2 - wrong answer"], 
+	question: "Which is NOT a candybar", 
+	choices: ["Coke Zero", "Snake oil", "Twix", "Your Mother"], 
 	correctAnswer:2
 },
 
 {
-	question: "Question 3", 
-	choices: ["Q3 - wrong answer", "Q3 - wrong answer", "Q3 - CORRECT answer", "Q3 - wrong answer"], 
+	question: "Which Bar Has no Chocolate", 
+	choices: ["Snickers", "Almond Joy", "Payday", "Reese's"], 
 	correctAnswer:2
 },
 
 {
-	question: "Question 4", 
-	choices: ["Q4 - CORRECT answer", "Q4 - wrong answer", "Q4 - wrong answer", "Q4 - wrong answer"], 
+	question: "Who discovered a way to mix some melted cacao butter back into defatted, to create a paste that could be pressed into a mold.", 
+	choices: ["Joseph Fry", "God", "Fergie", "The Dos equis guy"], 
 	correctAnswer:0
 }
 ];
 
 $(document).ready(function(){
 
-$("#question").append(allQuestions[0].question);
-$("#answer1").append(allQuestions[0].choices[0]);
-$("#answer2").append(allQuestions[0].choices[1]);
-$("#answer3").append(allQuestions[0].choices[2]);
-$("#answer4").append(allQuestions[0].choices[3]);
+showFunction();
+
+function showFunction(){
+	$("#question").empty().append(allQuestions[0].question);
+	$("#answer1").empty().append(allQuestions[0].choices[0]);
+	$("#answer2").empty().append(allQuestions[0].choices[1]);
+	$("#answer3").empty().append(allQuestions[0].choices[2]);
+	$("#answer4").empty().append(allQuestions[0].choices[3]);
+}
+
+
+
+
+
+
+
+$("#progressBar :nth-child(1)").addClass("seen");
+
+
+
+
+
+function newProgress(question) { 
+	$("#progressBar .current").next().addClass('seen').addClass('current');
+}
 
 function recordAnswer(question) {
 	if (userAnswer == allQuestions[question].correctAnswer) {
@@ -56,10 +78,11 @@ function recordAnswer(question) {
 		userWrongAnswers.push('1.  ' + allQuestions[question].choices[userAnswer]);
 	}	
 }
-
+////////////////
 function newQuestion() {
 
 	if (currentQuestion == 4) {
+		//create message on screen that displays how many they
 		console.log('all done!');
 		console.log('You got ' + userCorrectAnswers.length + ' out of ' + allQuestions.length + ' correct!');
 	}
@@ -68,6 +91,8 @@ function newQuestion() {
 		$("#answers").each(function(radio){
 			$("input").prop('checked', false);
 		});  
+
+		newProgress(currentQuestion);
 
 		$("#question").text(allQuestions[currentQuestion].question);
 		$("#answer1").text(allQuestions[currentQuestion].choices[0]);
@@ -79,7 +104,7 @@ function newQuestion() {
 		// (was trying to dynamically generate the answer box ids here instead of having them all listed like above - not working yet though)
 
 		// for (i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
-		// 	var createId = "#answers" + (i + 1);
+		// 	var createId = "#answer" + (i + 1);
 		// 	console.log('created id:  ' + createId);
 		// 	$("createId").text(allQuestions[currentQuestion].choices[i]);
 		// 	console.log('new questions: ' + allQuestions[currentQuestion].choices[i]);
@@ -104,17 +129,46 @@ $("#submit").click(function() {
 
 		recordAnswer(currentQuestion);
 		currentQuestion++;
+		//$("#progressBar").text((currentQuestion + 1) + '/' + allQuestions.length);
 		newQuestion();
 		finishQuiz();
-})
+});
+
+retakeQuiz();
 
 function finishQuiz(end){
 	if(currentQuestion === 4){
 		$("#answerForm").hide();
 		$("#submit").hide();
 		$("#question").hide();
-		$("#endQuiz").show().append("You got " + userCorrectAnswers.length + " out of " + allQuestions.length + "correct!")
+		$('#progressBar').hide();
+		$("#endQuiz").show().empty().append("You got " + userCorrectAnswers.length + " out of " + allQuestions.length + " correct!")
+	
+		$("#retakeButton").show()
 	}
 }
+
+function retakeQuiz() {
+	$("#retakeButton").on("click", function() {
+		console.log('click');
+		console.log(currentQuestion);
+		if(currentQuestion >= 4){
+			currentQuestion = 0;
+			showFunction();
+			$("#answerForm").show();
+	        $("#submit").show();
+	        $("#question").show();
+	        $("#endQuiz").hide();
+	        $("#retakeButton").hide();
+			}
+		else {
+			console.log('error');
+		}
+		console.log(currentQuestion);
+	});
+}
+
+
+
 //doc ready closing tag:
 });
