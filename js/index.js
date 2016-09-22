@@ -105,6 +105,16 @@ $("#submit").click(function() {
 		recordAnswer(currentQuestion);
 		currentQuestion++;
 		newQuestion();
+		finishQuiz();
 })
+
+function finishQuiz(end){
+	if(currentQuestion === 4){
+		$("#answerForm").hide();
+		$("#submit").hide();
+		$("#question").hide();
+		$("#endQuiz").show().append("You got " + userCorrectAnswers.length + " out of " + allQuestions.length + "correct!")
+	}
+}
 //doc ready closing tag:
 });
