@@ -1,0 +1,29 @@
+h1 {
+	color: purple;
+}
+
+
+.page {
+	width: 400px;
+	height: 400px;
+	background-color: grey;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.question {
+	min-height: 100px;
+	background-color: blue;
+}
+
+
+.container {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.answers {
+	min-height: 100px;
+	background-color: red;
+}
